@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watermark PDF</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Watermark PDF</h1>
+
+        <!-- Input form untuk watermark -->
+        <div>
+            <label for="watermarkText">Watermark:</label>
+            <input type="text" id="watermarkText" placeholder="Masukkan teks watermark" value="WATERMARK">
+        </div>
+
+        <!-- Input form untuk keterangan -->
+        <div>
+            <label for="docTitle">Header Dokumen:</label>
+            <input type="text" id="docTitle" placeholder="Masukkan header dokumen" value="dokumen_medis">
+        </div>
+        <div>
+            <label for="downloadBy">Diunduh oleh:</label>
+            <input type="text" id="downloadBy" placeholder="Masukkan nama pengunduh" value="Nanda">
+        </div>
+        <div hidden>
+            <label for="downloadBy">Tanggal:</label>
+            <input type="datetime-local" id="downloadDate" placeholder="Masukkan nama pengunduh">
+        </div>
+
+        <button id="downloadBtn">Download Watermarked PDF</button>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
+
+
+    <script>
+        const downloadDateInput = document.getElementById('downloadDate');
+
+        function setCurrentDateTime() {
+            const currentDate = new Date();
+        
+            // Adjust for UTC +07 timezone by adding 7 hours to the current time
+            currentDate.setHours(currentDate.getHours() + 7);
+        
+            // Format the date in ISO format (YYYY-MM-DDTHH:MM)
+            const formattedDate = currentDate.toISOString().slice(0, 16);
+        
+            // Set the value of the input
+            downloadDateInput.value = formattedDate;
+        }
+        
+        setCurrentDateTime();
+        
+    </script>
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
